@@ -54,30 +54,39 @@ public class PlayRoulette extends Casino {
 
     private void result() {
         if (betPos > 0 && betPos < 37) {
-            p.setMoney(p.getMoney() * 2);
+            p.setMoney(p.getMoney() * 10);
         } else if (betPos == 37 && super.ballPosition > 0 && super.ballPosition < 13) {
+            p.setMoney(p.getMoney() * 2);
 
 
         } else if (betPos == 38 && super.ballPosition > 0 && super.ballPosition < 19) {
+            p.setMoney(p.getMoney() * 2);
 
         } else if (betPos == 39 && super.ballPosition > 12 && super.ballPosition < 25) {
+            p.setMoney(p.getMoney() * 2);
 
 
         } else if (betPos == 40 && super.ballPosition > 18 && super.ballPosition < 37) {
+            p.setMoney(p.getMoney() * 2);
 
         } else if (betPos == 41 && super.ballPosition > 24 && super.ballPosition <= 36) {
+            p.setMoney(p.getMoney() * 2);
 
         } else if (betPos == 42 && super.ballPosition == 0) {
+            p.setMoney(p.getMoney() * 2);
 
         } else if (betPos == 43 && super.ballPositionOnTheTable.get(super.ballPosition).equals("Fekete")) {
+            p.setMoney(p.getMoney() * 2);
 
         } else if (betPos == 43 && super.ballPositionOnTheTable.get(super.ballPosition).equals("Piros")) {
+            p.setMoney(p.getMoney() * 2);
 
         }else {
-            // TODO: 2020. 05. 12. metodus to lose 
+            p.setMoney(p.getMoney() - bet);
         }
 
     }
+
 
 
 }
