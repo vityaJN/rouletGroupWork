@@ -11,4 +11,11 @@ public class Casino {
         }
         table.put(0,"White");
     }
+
+    public void result() {
+
+        // majd a pörgetés után írjuk ki, hogy nyert-e a játékos, és frissítsük az egyenlegét!
+
+    }
+
 }

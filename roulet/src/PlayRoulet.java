@@ -1,9 +1,4 @@
-public class PlayRoulet extends Casino {
-
-
-
-
-
+public class PlayRoulet {
 
 
 }
