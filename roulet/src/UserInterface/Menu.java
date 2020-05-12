@@ -1,9 +1,17 @@
+package UserInterface;
+
+import Casino.PlayRoulette;
+import Playerr.Player;
+import Simulation.Simulation;
+
 import java.util.Scanner;
 
+import Playerr.Player;
+
 public class Menu {
+    int chooseMenuPoint;
     /*
 
-    Játék esetén kérdezzük meg a felhasználót, hogy mekkora kezdő-összeggel indul,
 
     majd minden pörgetés előtt, hogy hova szeretne tétet tenni
     egy tétet tud felrakni pörgetésenként
@@ -20,35 +28,39 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
      */
 
     public void menu() {
-        int chooseMenuPoint;
-
         Scanner sc = new Scanner(System.in);
-        chooseMenuPoint = sc.nextInt();
 
-        System.out.println("playRoulete [0] Simulation [1]");
+        System.out.println("playRoulete [0] Simulation [1]  Exit [2]");
+
+        do {
+            try {
+                chooseMenuPoint = sc.nextInt();
+
+                if (chooseMenuPoint != 0 && chooseMenuPoint != 1 && chooseMenuPoint != 2) {
+                    throw new Exception();
+                }
+
+            } catch (Exception e) {
+                System.out.println("Wrong Input");
+            }
+
+        } while (chooseMenuPoint != 0 && chooseMenuPoint != 1 && chooseMenuPoint != 2);
+
         switch (chooseMenuPoint) {
 
             case 0:
-                PlayRoulette pr = new PlayRoulette(createOnePlayer());
+                Player asd = new Player();
+                PlayRoulette pr = new PlayRoulette(asd);
                 break;
             case 1:
                 Simulation sl = new Simulation();
-        }
-    }
+                break;
 
-    public Player createOnePlayer() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("how many money do u have?");
-        int money = 0;
-        try {
-            money = sc.nextInt();
-        } catch (Exception e) {
-            System.out.println("invalid input");
+            case 2:
+                System.exit(0);
         }
-        Player p = new Player(money);
-        return p;
-    }
 
+    }
 
 
 }
