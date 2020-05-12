@@ -1,7 +1,6 @@
 package Playerr;
 
 import Casino.Casino;
-
 import java.util.Scanner;
 
 public class Player {
@@ -36,10 +35,10 @@ public class Player {
     public void howManyMoneyDoYouHave() {
         Scanner sc = new Scanner(System.in);
         System.out.println("how many money do u have?");
-        int money = 0;
+
         try {
-            money = sc.nextInt();
-            if (money < Casino.MIN_MONEY_TO_ENTER_CASINO){
+            this.money = sc.nextInt();
+            if (this.money < Casino.MIN_MONEY_TO_ENTER_CASINO){
                 System.out.println("you dont have enough money to enter");
                 System.exit(0);
             }

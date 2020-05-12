@@ -1,12 +1,10 @@
 package UserInterface;
 
-import Casino.PlayRoulette;
+import Casino.Casino;
 import Playerr.Player;
 import Simulation.Simulation;
 
 import java.util.Scanner;
-
-import Playerr.Player;
 
 public class Menu {
     int chooseMenuPoint;
@@ -30,7 +28,7 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
     public void menu() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("playRoulete [0] Simulation [1]  Exit [2]");
+        System.out.println("playRoulete [0]\nSimulation [1]\nExit [2]");
 
         do {
             try {
@@ -50,7 +48,7 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
 
             case 0:
                 Player asd = new Player();
-                PlayRoulette pr = new PlayRoulette(asd);
+                Casino pr = new Casino(asd);
                 break;
             case 1:
                 Simulation sl = new Simulation();
