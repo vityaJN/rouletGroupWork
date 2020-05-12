@@ -25,7 +25,7 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
         Scanner sc = new Scanner(System.in);
         chooseMenuPoint = sc.nextInt();
 
-        System.out.println("playRoulete [0] Simulation [1]");
+        System.out.println("Rulett [0] Szimuláció [1]");
         switch (chooseMenuPoint) {
 
             case 0:
@@ -38,7 +38,7 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
 
     public Player createOnePlayer() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("how many money do u have?");
+        System.out.println("Mennyi pénzed van?");
         int money = 0;
         try {
             money = sc.nextInt();
