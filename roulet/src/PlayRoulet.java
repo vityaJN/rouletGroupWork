@@ -1,4 +1,4 @@
-public class PlayRoulet {
+public class PlayRoulet extends RouletTable {
 
 
 
