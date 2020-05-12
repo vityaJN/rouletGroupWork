@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Menu {
     /*
     Indítás után a program kérdezze meg a felhasználót, hogy játszani akar, vagy szimulációt indítani!
@@ -16,9 +18,41 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
  szumma nyereség) és végül írjuk ki a játékos záró-egyenlegét.
      */
 
-    public void result(){
+    public void Menu() {
+        int chooseMenuPoint;
 
-       // majd a pörgetés után írjuk ki, hogy nyert-e a játékos, és frissítsük az egyenlegét!
+        Scanner sc = new Scanner(System.in);
+        chooseMenuPoint = sc.nextInt();
+
+        System.out.println("playRoulete [0]");
+        switch (chooseMenuPoint) {
+
+            case 0:
+                PlayRoulet pr = new PlayRoulet();
+                break;
+            case 1:
+
+
+        }
+
+    }
+
+    public void createOnePlayer() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("how many money do u have?");
+        int money = 0;
+        try {
+            money = sc.nextInt();
+        } catch (Exception e) {
+            System.out.println("invalid input");
+        }
+        Player p = new Player(money);
+    }
+
+
+    public void result() {
+
+        // majd a pörgetés után írjuk ki, hogy nyert-e a játékos, és frissítsük az egyenlegét!
 
     }
 }
