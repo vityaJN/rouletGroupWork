@@ -1,7 +1,6 @@
 public class Player {
     private int money;
 
-
     public Player(int money) {
 
         this.money = money;
@@ -15,11 +14,5 @@ public class Player {
     public void setMoney(int money) {
 
         this.money = money;
-    }
-
-
-
-    public void takeMoneyOnTheRed(){
-
     }
 }

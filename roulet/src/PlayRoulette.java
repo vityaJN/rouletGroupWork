@@ -6,24 +6,30 @@ public class PlayRoulette extends Casino {
 
     private int betPos;
     private int bet;
+
     Player p;
 
 
-    public PlayRoulette() {
-
+    public PlayRoulette(Player player) {
+        this.p = player;
+        play();
+        
     }
 
     public void play() {
         System.out.println("Kérem adja meg a tétet!");
         setBet();
-        System.out.println("Kérem adja meg a tét helyét: 0 - 41");
+        System.out.println("Melyik mezőre szeretnél rakni?");
+        System.out.println("[0 -41]");
+        System.out.println("1-12 [37]");
+        whichPositionToBet();
         spinTheRoulette();
-
+        result();
 
     }
 
     private void spinTheRoulette() {
-        super.ballPosition = (int)( Math.random() * 36);
+        super.ballPosition = (int) (Math.random() * 37);
     }
 
     private void setBet() {
@@ -37,53 +43,42 @@ public class PlayRoulette extends Casino {
             }
         }
 
+    }
 
-        System.out.println("0-36");
-        System.out.println("1-12[37] 1-18[38] 13-24[39] 19-36[40] 25-36[41]");
+    private void whichPositionToBet() {
+        Scanner sc = new Scanner(System.in);
         betPos = sc.nextInt();
 
+    }
 
-        // 0 - 36
+
+    private void result() {
         if (betPos > 0 && betPos < 37) {
             p.setMoney(p.getMoney() * 2);
-        } else if (betPos == 38) {
-            oneToTwelve();
-        }
+        } else if (betPos == 37 && super.ballPosition > 0 && super.ballPosition < 13) {
 
+
+        } else if (betPos == 38 && super.ballPosition > 0 && super.ballPosition < 19) {
+
+        } else if (betPos == 39 && super.ballPosition > 12 && super.ballPosition < 25) {
+
+
+        } else if (betPos == 40 && super.ballPosition > 18 && super.ballPosition < 37) {
+
+        } else if (betPos == 41 && super.ballPosition > 24 && super.ballPosition <= 36) {
+
+        } else if (betPos == 42 && super.ballPosition == 0) {
+
+        } else if (betPos == 43 && super.ballPositionOnTheTable.get(super.ballPosition).equals("Fekete")) {
+
+        } else if (betPos == 43 && super.ballPositionOnTheTable.get(super.ballPosition).equals("Piros")) {
+
+        }else {
+            // TODO: 2020. 05. 12. metodus to lose 
+        }
 
     }
 
 
-    private void oneToTwelve() {
-
-        if (super.ballPosition > 0 && super.ballPosition < 13) {
-            System.out.println("Nyert");
-        }
-
-    }
-
-    private void oneToEigtheen() {
-        if (super.ballPosition > 0 && super.ballPosition < 19) {
-            System.out.println("Nyert");
-        }
-    }
-
-    private void thirteenToTwentyfour() {
-        if (super.ballPosition > 12 && super.ballPosition < 25) {
-            System.out.println("Nyert");
-        }
-    }
-
-    private void nighteenToThirtysix() {
-        if (super.ballPosition > 18 && super.ballPosition < 37) {
-            System.out.println("Nyert");
-        }
-    }
-
-    private void twentyfiveToThirtysix() {
-        if (super.ballPosition > 24 && super.ballPosition <= 36) {
-            System.out.println("Nyert");
-        }
-    }
 }
 

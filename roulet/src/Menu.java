@@ -29,14 +29,14 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
         switch (chooseMenuPoint) {
 
             case 0:
-                PlayRoulette pr = new PlayRoulette();
+                PlayRoulette pr = new PlayRoulette(createOnePlayer());
                 break;
             case 1:
                 Simulation sl = new Simulation();
         }
     }
 
-    public void createOnePlayer() {
+    public Player createOnePlayer() {
         Scanner sc = new Scanner(System.in);
         System.out.println("how many money do u have?");
         int money = 0;
@@ -46,6 +46,7 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
             System.out.println("invalid input");
         }
         Player p = new Player(money);
+        return p;
     }
 
 
