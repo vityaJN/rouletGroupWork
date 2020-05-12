@@ -1,0 +1,125 @@
+Index: roulet/src/Casino.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.HashMap;\r\nimport java.util.Map;\r\n\r\npublic class Casino {\r\n//aaaa\r\n    Map<Integer, String> table = new HashMap<>();\r\n\r\n    public Casino() {\r\n        for (int i = 0; i < 36; i++) {\r\n            table.put(i, i % 2 == 0?\"Black\":\"Red\");\r\n        }\r\n        table.put(0,\"White\");\r\n    }\r\n\r\n    public void result() {\r\n\r\n        // majd a pörgetés után írjuk ki, hogy nyert-e a játékos, és frissítsük az egyenlegét!\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- roulet/src/Casino.java	(revision a698680d2e90fbfb5e76a21020b2a2597edd4aab)
++++ roulet/src/Casino.java	(date 1589282692989)
+@@ -3,15 +3,41 @@
+ 
+ public class Casino {
+ //aaaa
++
+     Map<Integer, String> table = new HashMap<>();
+ 
+     public Casino() {
+-        for (int i = 0; i < 36; i++) {
+-            table.put(i, i % 2 == 0?"Black":"Red");
++
++
++        /*
++//odd páratlan even páros
++// 11 black
++//19 red
++// 29 black
++•  For pockets 1 through 10, the odd numbered pockets are red and the even numbered pockets are black.
++•  For pockets 11 through 18, the odd numbered pockets are black and the even numbered pockets are red.
++•  For pockets 19 through 28, the odd numbered pockets are red and the even numbered pockets are black.
++•  For pockets 29 through 36, the odd numbered pockets are black and the even numbered pockets are red.
++         */
++
++        for (int i = 1; i < 37; i++) {
++            if (i > 0 && i < 11) {
++                table.put(i, i % 2 == 0 ? "Black" : "Red");
++            } else if (i > 10 && i < 19) {
++                table.put(i, i % 2 == 0 ? "Red" : "Black");
++
++            } else if (i > 18 && i < 29) {
++                table.put(i, i % 2 == 0 ? "Black" : "Red");
++
++            } else {
++                table.put(i, i % 2 == 0 ? "Red" : "Black");
++            }
+         }
+-        table.put(0,"White");
++        table.put(0, "White");
+     }
+ 
++
++
+     public void result() {
+ 
+         // majd a pörgetés után írjuk ki, hogy nyert-e a játékos, és frissítsük az egyenlegét!
+Index: roulet/src/Menu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.Scanner;\r\n\r\npublic class Menu {\r\n    /*\r\n\r\n    Játék esetén kérdezzük meg a felhasználót, hogy mekkora kezdő-összeggel indul,\r\n\r\n    majd minden pörgetés előtt, hogy hova szeretne tétet tenni\r\n    egy tétet tud felrakni pörgetésenként\r\n\r\n\r\n Szimuláció esetén a bemenetünk legyen a legkisebb rakható és a legnagyobb rakható tét,\r\n  az, hogy összesen hány pörgetés legyen az adott szimulációban és az, hogy milyen\r\n  stratégiát használ a játékban résztvevő egy darab játékos (minimum egy stratégiát,\r\n   a Martingel-startégiát valósítsunk meg!).\r\n\r\nEz után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki\r\n(hányas szám jött ki, mennyit nyert, mennyit veszített a fogadó, mennyi a\r\n szumma nyereség) és végül írjuk ki a játékos záró-egyenlegét.\r\n     */\r\n\r\n    public void Menu() {\r\n        int chooseMenuPoint;\r\n\r\n        Scanner sc = new Scanner(System.in);\r\n        chooseMenuPoint = sc.nextInt();\r\n\r\n        System.out.println(\"playRoulete [0] Simulation [1]\");\r\n        switch (chooseMenuPoint) {\r\n\r\n            case 0:\r\n                PlayRoulet pr = new PlayRoulet();\r\n                break;\r\n            case 1:\r\n                Simulation sl = new Simulation();\r\n        }\r\n    }\r\n\r\n    public void createOnePlayer() {\r\n        Scanner sc = new Scanner(System.in);\r\n        System.out.println(\"how many money do u have?\");\r\n        int money = 0;\r\n        try {\r\n            money = sc.nextInt();\r\n        } catch (Exception e) {\r\n            System.out.println(\"invalid input\");\r\n        }\r\n        Player p = new Player(money);\r\n    }\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- roulet/src/Menu.java	(revision a698680d2e90fbfb5e76a21020b2a2597edd4aab)
++++ roulet/src/Menu.java	(date 1589281498869)
+@@ -27,8 +27,8 @@
+ 
+         System.out.println("playRoulete [0] Simulation [1]");
+         switch (chooseMenuPoint) {
+-
+             case 0:
++                createOnePlayer();
+                 PlayRoulet pr = new PlayRoulet();
+                 break;
+             case 1:
+@@ -36,7 +36,7 @@
+         }
+     }
+ 
+-    public void createOnePlayer() {
++    public Player createOnePlayer() {
+         Scanner sc = new Scanner(System.in);
+         System.out.println("how many money do u have?");
+         int money = 0;
+@@ -46,8 +46,6 @@
+             System.out.println("invalid input");
+         }
+         Player p = new Player(money);
++        return p;
+     }
+-
+-
+-
+ }
+Index: roulet/src/SimpleStrategy.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class SimpleStrategy implements Strategys{\r\n    /*\r\n\r\n    Az a stratégia, hogy mindig a pirosra tesz, és ha veszít, akkor megduplázza a tétet és újra a pirosra tesz\r\n    Ezt egész addig csinálja, amíg egyszer nem nyer legkisebb téttel kezd\r\n     */\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- roulet/src/SimpleStrategy.java	(revision a698680d2e90fbfb5e76a21020b2a2597edd4aab)
++++ roulet/src/SimpleStrategy.java	(date 1589283705427)
+@@ -1,7 +1,22 @@
+ public class SimpleStrategy implements Strategys{
+-    /*
++
++
++
++
++    public SimpleStrategy() {
++
++    }
++
++
++
++
+ 
++
++    /*
+     Az a stratégia, hogy mindig a pirosra tesz, és ha veszít, akkor megduplázza a tétet és újra a pirosra tesz
+     Ezt egész addig csinálja, amíg egyszer nem nyer legkisebb téttel kezd
+      */
++
++
++
+ }

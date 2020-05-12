@@ -1,0 +1,15 @@
+Index: roulet/src/SimulationCPU/Computer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- roulet/src/SimulationCPU/Computer.java	(date 1589284364672)
++++ roulet/src/SimulationCPU/Computer.java	(date 1589284364672)
+@@ -0,0 +1,7 @@
++package SimulationCPU;
++
++public class Computer {
++
++
++
++}
