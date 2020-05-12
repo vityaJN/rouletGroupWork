@@ -1,4 +1,4 @@
-public class SimpleStrategy {
+public class SimpleStrategy implements Strategys{
     /*
 
     Az a stratégia, hogy mindig a pirosra tesz, és ha veszít, akkor megduplázza a tétet és újra a pirosra tesz
