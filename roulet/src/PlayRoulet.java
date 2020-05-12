@@ -1,4 +1,6 @@
-public class PlayRoulet extends RouletTable {
+public class PlayRoulet extends Casino {
+
+
 
 
 
