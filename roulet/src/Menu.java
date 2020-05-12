@@ -2,8 +2,9 @@ import java.util.Scanner;
 
 public class Menu {
     /*
-    Indítás után a program kérdezze meg a felhasználót, hogy játszani akar, vagy szimulációt indítani!
+
     Játék esetén kérdezzük meg a felhasználót, hogy mekkora kezdő-összeggel indul,
+
     majd minden pörgetés előtt, hogy hova szeretne tétet tenni
     egy tétet tud felrakni pörgetésenként
 
@@ -18,23 +19,21 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
  szumma nyereség) és végül írjuk ki a játékos záró-egyenlegét.
      */
 
-    public void Menu() {
+    public void menu() {
         int chooseMenuPoint;
 
         Scanner sc = new Scanner(System.in);
         chooseMenuPoint = sc.nextInt();
 
-        System.out.println("playRoulete [0]");
+        System.out.println("playRoulete [0] Simulation [1]");
         switch (chooseMenuPoint) {
 
             case 0:
                 PlayRoulette pr = new PlayRoulette();
                 break;
             case 1:
-
-
+                Simulation sl = new Simulation();
         }
-
     }
 
     public void createOnePlayer() {
@@ -50,9 +49,5 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
     }
 
 
-    public void result() {
 
-        // majd a pörgetés után írjuk ki, hogy nyert-e a játékos, és frissítsük az egyenlegét!
-
-    }
 }
