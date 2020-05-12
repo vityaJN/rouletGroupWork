@@ -20,10 +20,7 @@ public class PlayRoulette extends Casino {
             System.out.println("Kérem adja meg a tétet!");
             setBet();
             System.out.println("Melyik mezőre szeretnél rakni?");
-            System.out.println("[0 -41]");
-            System.out.println("1-12 [37]");
-
-
+            printTheMenu();
             whichPositionToBet();
             spinTheRoulette();
             result();
@@ -63,9 +60,8 @@ public class PlayRoulette extends Casino {
     }
 
     private void printTheMenu() {
-        System.out.println("Melyik mezőre szeretnél rakni?");
         System.out.println("[0 -41]");
-        System.out.println("1-12 [37]");
+
 
     }
 
@@ -77,22 +73,19 @@ public class PlayRoulette extends Casino {
     private void setBet() {
         Scanner sc = new Scanner(System.in);
 
-        int bet = 0;
 
         do {
             try {
-                bet = sc.nextInt();
+                p.setBet(sc.nextInt());
                 if (p.getBet() < 10) {
                     System.out.println("A minimális tét 10 dollár, kérem növelje e tétet!");
-                } else if (bet > 100000) {
+                } else if (p.getBet() > 100000) {
                     System.out.println("A maximális tét 100000, kérem csökkentse a tétet!");
                 }
             } catch (Exception e) {
                 System.out.println("error");
             }
-        } while (bet <= p.getMoney() && p.getBet() <= 10 || p.getBet() >= 100000);
-
-        p.setBet(sc.nextInt());
+        } while (p.getBet() <= p.getMoney() && p.getBet() <= 10 || p.getBet() >= 100000);
 
 
     }
@@ -108,8 +101,8 @@ public class PlayRoulette extends Casino {
                 System.out.println("error");
                 printTheMenu();
             }
-
-        } while (p.getBetPos() > -1 || p.getBetPos() < 48);
+            System.out.println(p.getBetPos());
+        } while (!(p.getBetPos() > 0 && p.getBetPos() < 48));
 
 
     }

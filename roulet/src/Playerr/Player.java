@@ -11,10 +11,12 @@ public class Player {
     private boolean wannaPlayMore;
 
     public boolean isWannaPlayMore() {
+
         return wannaPlayMore;
     }
 
     public void setWannaPlayMore(boolean wannaPlayMore) {
+
         this.wannaPlayMore = wannaPlayMore;
     }
 
