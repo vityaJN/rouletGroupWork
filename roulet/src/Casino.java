@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Casino {
-
+//aaaa
     Map<Integer, String> table = new HashMap<>();
 
     public Casino() {
