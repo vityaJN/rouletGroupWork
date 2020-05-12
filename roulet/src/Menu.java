@@ -28,7 +28,7 @@ Ez után indítsuk el a szimulációt, a szimuláció egyes lépéseit írjuk ki
         switch (chooseMenuPoint) {
 
             case 0:
-                PlayRoulet pr = new PlayRoulet();
+                PlayRoulette pr = new PlayRoulette();
                 break;
             case 1:
 
