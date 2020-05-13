@@ -1,6 +1,5 @@
 package Casino;
 
-import Players.HumanControledPlayer;
 import Players.Player;
 
 import java.util.*;
@@ -12,33 +11,22 @@ public class Roulet {
 
     protected int ballPosition;
     Map<Integer, String> ballPositionOnTheTable;
-    List<Player> playersList;
-    Player actualPlayerWhosPlaying;
-
-    private boolean doesItAHumanPlayerRound;
-    private int onWhichRoundDoesThePlayerMakeAMove;
-    private int actualPlayerIndex;
+    Player player;
 
 
-    public Roulet(List<Player> playersList) {
+    public Roulet(Player player) {
         ballPositionOnTheTable = new HashMap<>();
-        this.playersList = new ArrayList<>();
-        this.playersList = playersList;
+       this.player = player;
 
-        fillTheCasinoTable();
-
-        for (int i = 0; i < playersList.size(); i++) {
-            actualPlayerIndex = i;
+       fillTheCasinoTable();
             play();
-        }
-
     }
 
 
-}
+
 
     public void play() {
-        if (playersList.get(actualPlayerIndex) instanceof HumanControledPlayer) {
+
             do {
 
                 setBet();
@@ -50,13 +38,9 @@ public class Roulet {
                 statistics();
                 doUWantToPlayMore();
 
-            } while (humanControlledPlayer.getMoney() > MIN_BET && humanControlledPlayer.isWannaPlayMore());
-        } else {
-            playersList.get(actualPlayerIndex).setBet();
-
+            } while (player.getMoney() > MIN_BET && player.isWannaPlayMore());
         }
 
-    }
 
         public void doUWantToPlayMore () {
             Scanner sc = new Scanner(System.in);
@@ -70,13 +54,12 @@ public class Roulet {
 
             switch (choose) {
                 case 0:
-                    humanControlledPlayer.setWannaPlayMore(true);
+                    player.setWannaPlayMore(true);
                     break;
                 case 1:
-                    humanControlledPlayer.setWannaPlayMore(false);
+                    player.setWannaPlayMore(false);
                     break;
             }
-
         }
 
 
@@ -89,12 +72,12 @@ public class Roulet {
             System.out.println("Kérem adja meg a tétet!");
             do {
                 try {
-                    humanControlledPlayer.setBet(sc.nextInt());
-                    if (humanControlledPlayer.getBet() < 10) {
+                    player.setBet(sc.nextInt());
+                    if (player.getBet() < 10) {
                         System.out.println("A minimális tét 10 dollár, kérem növelje e tétet!");
-                    } else if (humanControlledPlayer.getBet() > 100000) {
+                    } else if (player.getBet() > 100000) {
                         System.out.println("A maximális tét 100000, kérem csökkentse a tétet!");
-                    } else if (humanControlledPlayer.getBet() > humanControlledPlayer.getMoney()) {
+                    } else if (player.getBet() > player.getMoney()) {
                         System.out.println("nem tudsz többet felrakni mint amennyid van");
                     }
 
@@ -102,7 +85,7 @@ public class Roulet {
                     sc.nextLine();
                     System.out.println("bad input");
                 }
-            } while (!(humanControlledPlayer.getBet() <= humanControlledPlayer.getMoney() && humanControlledPlayer.getBet() > 10 && humanControlledPlayer.getBet() < 100000));
+            } while (!(player.getBet() <= player.getMoney() && player.getBet() > 10 && player.getBet() < 100000));
         }
 
 
@@ -111,48 +94,48 @@ public class Roulet {
             do {
                 try {
                     System.out.println("Melyik mezőre szeretnél rakni?");
-                    humanControlledPlayer.setBetPos(sc.nextInt());
+                    player.setBetPos(sc.nextInt());
 
                 } catch (Exception e) {
                     System.out.println("error");
                     printTheMenu();
                 }
-                System.out.println(humanControlledPlayer.getBetPos());
-        } while (!(humanControlledPlayer.getBetPos() > 0 && humanControlledPlayer.getBetPos() < 48));
+                System.out.println(player.getBetPos());
+        } while (!(player.getBetPos() > 0 && player.getBetPos() < 48));
         }
 
 
         public void result () {
-            humanControlledPlayer.setBeforeSpinMoney(humanControlledPlayer.getMoney());
+            player.setBeforeSpinMoney(player.getMoney());
 
-            if (humanControlledPlayer.getBetPos() == ballPosition) {
-                humanControlledPlayer.setMoney((int) (humanControlledPlayer.getMoney() * 1.2));
-            } else if (humanControlledPlayer.getBetPos() == 37 && ballPosition > 0 && ballPosition < 13) {
-                humanControlledPlayer.setMoney(humanControlledPlayer.getMoney() * 2);
+            if (player.getBetPos() == ballPosition) {
+                player.setMoney((int) (player.getMoney() * 1.2));
+            } else if (player.getBetPos() == 37 && ballPosition > 0 && ballPosition < 13) {
+                player.setMoney(player.getMoney() * 2);
 
-            } else if (humanControlledPlayer.getBetPos() == 38 && ballPosition > 0 && ballPosition < 19) {
-                humanControlledPlayer.setMoney(humanControlledPlayer.getMoney() * 2);
+            } else if (player.getBetPos() == 38 && ballPosition > 0 && ballPosition < 19) {
+                player.setMoney(player.getMoney() * 2);
 
-            } else if (humanControlledPlayer.getBetPos() == 39 && ballPosition > 12 && ballPosition < 25) {
-                humanControlledPlayer.setMoney(humanControlledPlayer.getMoney() * 2);
+            } else if (player.getBetPos() == 39 && ballPosition > 12 && ballPosition < 25) {
+                player.setMoney(player.getMoney() * 2);
 
-            } else if (humanControlledPlayer.getBetPos() == 40 && ballPosition > 18 && ballPosition < 37) {
-                humanControlledPlayer.setMoney(humanControlledPlayer.getMoney() * 2);
+            } else if (player.getBetPos() == 40 && ballPosition > 18 && ballPosition < 37) {
+                player.setMoney(player.getMoney() * 2);
 
-            } else if (humanControlledPlayer.getBetPos() == 41 && ballPosition > 24 && ballPosition <= 36) {
-                humanControlledPlayer.setMoney(humanControlledPlayer.getMoney() * 2);
+            } else if (player.getBetPos() == 41 && ballPosition > 24 && ballPosition <= 36) {
+                player.setMoney(player.getMoney() * 2);
 
-            } else if (humanControlledPlayer.getBetPos() == 42 && ballPosition == 0) {
-                humanControlledPlayer.setMoney(humanControlledPlayer.getMoney() * 2);
+            } else if (player.getBetPos() == 42 && ballPosition == 0) {
+                player.setMoney(player.getMoney() * 2);
 
-            } else if (humanControlledPlayer.getBetPos() == 43 && ballPositionOnTheTable.get(ballPosition).equals("Red")) {
-                humanControlledPlayer.setMoney(humanControlledPlayer.getMoney() * 2);
+            } else if (player.getBetPos() == 43 && ballPositionOnTheTable.get(ballPosition).equals("Red")) {
+                player.setMoney(player.getMoney() * 2);
 
-            } else if (humanControlledPlayer.getBetPos() == 44 && ballPositionOnTheTable.get(ballPosition).equals("Black")) {
-                humanControlledPlayer.setMoney(humanControlledPlayer.getMoney() * 2);
+            } else if (player.getBetPos() == 44 && ballPositionOnTheTable.get(ballPosition).equals("Black")) {
+                player.setMoney(player.getMoney() * 2);
 
             } else {
-                humanControlledPlayer.setMoney(humanControlledPlayer.getMoney() - humanControlledPlayer.getBet());
+                player.setMoney(player.getMoney() - player.getBet());
             }
         }
 
@@ -219,15 +202,15 @@ public class Roulet {
 
             System.out.println("roulet ball position: " + ballPosition);
             System.out.println("roulet ball landed on " + ballPositionOnTheTable.get(ballPosition) + " color");
-            System.out.println("you have been bet  " + humanControlledPlayer.getBet() + " forint");
-            System.out.println("Before the spin u had " + humanControlledPlayer.getBeforeSpinMoney() + " forint");
+            System.out.println("you have been bet  " + player.getBet() + " forint");
+            System.out.println("Before the spin u had " + player.getBeforeSpinMoney() + " forint");
 
-            if (humanControlledPlayer.getMoney() < humanControlledPlayer.getBeforeSpinMoney()) {
-                System.out.println("you lost " + humanControlledPlayer.getBet() + " forint");
+            if (player.getMoney() < player.getBeforeSpinMoney()) {
+                System.out.println("you lost " + player.getBet() + " forint");
             } else {
-                System.out.println("you won " + (humanControlledPlayer.getMoney() - humanControlledPlayer.getBeforeSpinMoney()));
+                System.out.println("you won " + (player.getMoney() - player.getBeforeSpinMoney()));
             }
-            System.out.println("now your money is:" + humanControlledPlayer.getMoney() + " forint");
+            System.out.println("now your money is:" + player.getMoney() + " forint");
 
             seperator();
 

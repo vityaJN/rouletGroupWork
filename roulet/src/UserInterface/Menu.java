@@ -1,7 +1,7 @@
 package UserInterface;
 
-import Players.GeneratePlayers;
-import Players.HumanControledPlayer;
+import Casino.Roulet;
+import Players.Player;
 
 import java.util.Scanner;
 
@@ -29,14 +29,8 @@ public class Menu {
         switch (chooseMenuPoint) {
 
             case 0:
-                int withHowManyPlayersU_WannaPlay = 3;
-                System.out.println();
-                System.out.println();
-                HumanControledPlayer hp = new HumanControledPlayer();
-
-
-
-
+                Player player = new Player();
+                Roulet roulet = new Roulet(player);
                 break;
 
             case 2:

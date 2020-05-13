@@ -3,14 +3,15 @@ package Players;
 import Casino.Roulet;
 import java.util.Scanner;
 
-public abstract class Player {
+public class Player {
     protected int money;
     protected int bet;
     protected int betPos;
     protected int beforeSpinMoney;
-    protected boolean amIAHuman;
-
+    boolean isWannaPlayMore;
     public Player() {
+        isWannaPlayMore = true;
+        howManyMoneyDoYouHave();
     }
 
 
@@ -28,19 +29,8 @@ public abstract class Player {
         } catch (Exception e) {
             System.out.println("invalid input");
         }
-        System.out.println(this.money + " debug ocska geci");
     }
 
-
-
-
-    public boolean isAmIAHuman() {
-        return amIAHuman;
-    }
-
-    public void setAmIAHuman(boolean amIAHuman) {
-        this.amIAHuman = amIAHuman;
-    }
     public int getBeforeSpinMoney() {
         return beforeSpinMoney;
     }
@@ -65,10 +55,16 @@ public abstract class Player {
     public void setBetPos(int betPos) {
         this.betPos = betPos;
     }
-    public void setBet(){
+    public void setBet() {
 
     }
-    public abstract boolean isWannaPlayMore();
 
-    public abstract void setWannaPlayMore(boolean b);
+
+    public boolean isWannaPlayMore() {
+        return isWannaPlayMore;
+    }
+
+    public void setWannaPlayMore(boolean wannaPlayMore) {
+        isWannaPlayMore = wannaPlayMore;
+    }
 }
