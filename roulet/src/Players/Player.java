@@ -1,0 +1,70 @@
+package Players;
+
+import Casino.Roulet;
+import java.util.Scanner;
+
+public class Player {
+    protected int money;
+    protected int bet;
+    protected int betPos;
+    protected int beforeSpinMoney;
+    boolean isWannaPlayMore;
+    public Player() {
+        isWannaPlayMore = true;
+        howManyMoneyDoYouHave();
+    }
+
+
+
+    public void howManyMoneyDoYouHave() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Mennyi pénzed van?");
+
+        try {
+            this.money = sc.nextInt();
+            if (this.money < Roulet.MIN_MONEY_TO_ENTER_CASINO){
+                System.out.println("Nincs elég pénzed a játékhoz.");
+                System.exit(0);
+            }
+        } catch (Exception e) {
+            System.out.println("invalid input");
+        }
+    }
+
+    public int getBeforeSpinMoney() {
+        return beforeSpinMoney;
+    }
+    public void setBeforeSpinMoney(int beforeSpinMoney) {
+        this.beforeSpinMoney = beforeSpinMoney;
+    }
+    public int getMoney() {
+        return money;
+    }
+    public void setMoney(int money) {
+        this.money = money;
+    }
+    public int getBet() {
+        return bet;
+    }
+    public void setBet(int bet) {
+        this.bet = bet;
+    }
+    public int getBetPos() {
+        return betPos;
+    }
+    public void setBetPos(int betPos) {
+        this.betPos = betPos;
+    }
+    public void setBet() {
+
+    }
+
+
+    public boolean isWannaPlayMore() {
+        return isWannaPlayMore;
+    }
+
+    public void setWannaPlayMore(boolean wannaPlayMore) {
+        isWannaPlayMore = wannaPlayMore;
+    }
+}
