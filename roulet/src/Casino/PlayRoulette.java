@@ -60,8 +60,38 @@ public class PlayRoulette extends Casino {
     }
 
     private void printTheMenu() {
-        System.out.println("[0 -41]");
-
+        System.out.println("| Bet                    | Pays | Probability Win | House Edge |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| Red                    | 1    | 47.37%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| Black                  | 1    | 47.37%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| Odd                    | 1    | 47.37%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("|Even                    | 1    | 47.37%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| 1 to 18                | 1    | 47.37%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| 19 to 36               | 1    | 47.37%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| 1 to 12                | 2    | 31.58%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| 13 to 24               | 2    | 31.58%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| 25 to 36               | 2    | 31.58%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| Six line (6 numbers)   | 5    | 15.79%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| First five (5 numbers) | 6    | 13.16           | 7.89%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| Corner (4 numbers)     | 8    | 10.53%          | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| Street (3 numbers)     | 11   | 7.895           | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| Split (2 numbers)      | 17   | 5.26%           | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
+        System.out.println("| Any one number         | 35   | 2.62%           | 5.26%      |");
+        System.out.println("+------------------------+------+-----------------+------------+");
 
     }
 
@@ -77,15 +107,15 @@ public class PlayRoulette extends Casino {
         do {
             try {
                 p.setBet(sc.nextInt());
-                if (p.getBet() < 10) {
-                    System.out.println("A minimális tét 10 dollár, kérem növelje e tétet!");
-                } else if (p.getBet() > 100000) {
-                    System.out.println("A maximális tét 100000, kérem csökkentse a tétet!");
+                if (p.getBet() < MIN_BET) {
+                    System.out.println("A minimális tét " + Casino.MIN_BET + " dollár, kérem növelje e tétet!");
+                } else if (p.getBet() > MAX_BET) {
+                    System.out.println("A maximális tét " + Casino.MAX_BET + " kérem csökkentse a tétet!");
                 }
             } catch (Exception e) {
                 System.out.println("error");
             }
-        } while (p.getBet() <= p.getMoney() && p.getBet() <= 10 || p.getBet() >= 100000);
+        } while (p.getBet() <= p.getMoney() && p.getBet() <= MIN_BET || p.getBet() >= MAX_BET);
 
 
     }
